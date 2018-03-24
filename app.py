@@ -11,7 +11,6 @@ def index():
   else:
     app.Stock = request.form['Stock']
     app.Type = request.form['Select']
-    f = open('answers.txt')
     return redirect('/graph')
 
 @app.route('/graph')
