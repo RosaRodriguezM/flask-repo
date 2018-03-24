@@ -11,6 +11,10 @@ def index():
   else:
     app.Stock = request.form['Stock']
     app.Type = request.form['Select']
+    f = open('answers.txt')
+    f.write('Stock: %s\n'%(app.Stock))
+    f.write('Type: %s\n'%(app.Type))
+    f.close()
     return redirect('/about')
 
 
