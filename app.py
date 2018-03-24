@@ -8,6 +8,14 @@ app.Type = 'Open'
 def index():
   if request.method == 'GET':
     return render_template('index.html')
+  else:
+    app.Stock = request.form['Stock']
+    app.Type = request.form['Select']
+    f = open('answers.txt')
+    f.write('Stock: %s\n'%(app.Stock))
+    f.write('Type: %s\n'%(app.Type))
+    f.close()
+    return redirect('/graph')
 
 @app.route('/graph')
 def graph():
