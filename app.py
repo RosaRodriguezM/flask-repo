@@ -16,7 +16,7 @@ def index():
 
 @app.route('/graph')
 def graph():
-  return render_template('graph.html',stock=Stock)
+  return render_template('graph.html',stock=app.Stock)
 
 
 @app.route('/about')
