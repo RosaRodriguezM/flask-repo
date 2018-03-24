@@ -1,4 +1,10 @@
 from flask import Flask, render_template, request, redirect
+from simplejson import loads
+from pandas import DataFrame, to_datetime
+from bokeh.embed import components 
+from bokeh.models import ColumnDataSource, FactorRange, Title
+from bokeh.plotting import figure
+from bokeh.palettes import Spectral11
 
 app = Flask(__name__)
 app.Stock = 'GOOG'
@@ -15,7 +21,13 @@ def index():
 
 @app.route('/graph')
 def graph():
-  return render_template('graph.html',stock=app.Stock)
+  api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' %app.Stock
+  session = requests.Session()
+  session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
+  raw_data = session.get(api_url)
+  R=loads(raw_data.content)
+  DATA=DataFrame(R['data'],colums=R['column_names'])
+  return render_template('graph.html',stock=DATA.columns[0])
 
 
 @app.route('/about')
