@@ -22,12 +22,7 @@ def index():
 @app.route('/graph')
 def graph():
   api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' %app.Stock
-  session = requests.Session()
-  session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
-  raw_data = session.get(api_url)
-  R=loads(raw_data.content)
-  DATA=DataFrame(R['data'],colums=R['column_names'])
-  return render_template('graph.html',stock=DATA.columns[0])
+  return render_template('graph.html',stock=api_url)
 
 
 @app.route('/about')
