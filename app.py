@@ -10,16 +10,17 @@ app = Flask(__name__)
 app.Stock = 'GOOG'
 app.Type = 'Open'
 
-@app.route('/',methods=['GET','POST'])
-def index():
-  if request.method == 'GET':
-    return render_template('index.html')
-  else:
-    app.Stock = request.form['Stock']
-    app.Type = request.form['Select']
-    return redirect('/graph')
+#@app.route('/',methods=['GET','POST'])
+#def index():
+#  if request.method == 'GET':
+#    return render_template('index.html')
+#  else:
+#    app.Stock = request.form['Stock']
+#    app.Type = request.form['Select']
+#    return redirect('/graph')
 
-@app.route('/graph')
+#@app.route('/graph')
+@app.route('/')
 def graph():
   api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' %app.Stock
   session = requests.Session()
