@@ -26,8 +26,8 @@ def graph():
   session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
   raw_data = session.get(api_url)
   R=loads(raw_data.content)
-  DATA=DataFrame(R['data'],columns=R['column_names'])  
-  return render_template('graph.html',DATA.columns[0])
+#  DATA=DataFrame(R['data'],columns=R['column_names'])  
+  return render_template('graph.html',R['data'][0][0])
 
 
 @app.route('/about')
