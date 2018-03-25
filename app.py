@@ -18,7 +18,7 @@ def index():
     return render_template('index.html')
   else:
     app.Stock = request.form['Stock']
-    app.Type = request.form['Select']
+#    app.Type = request.form['Select']
     return redirect('/graph')
 
 @app.route('/graph')
