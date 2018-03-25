@@ -29,7 +29,7 @@ def graph():
   raw_data = session.get(api_url)
   R=loads(raw_data.content)
 #  DATA=DataFrame(R['data'],columns=R['column_names'])  
-  return render_template('graph.html',stock=R['data'][0][0])
+  return render_template('graph.html',stock=raw_data)
 
 
 @app.route('/about')
