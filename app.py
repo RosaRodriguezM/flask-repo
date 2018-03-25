@@ -36,7 +36,7 @@ def graph():
     p.line(to_datetime(DATA['Date']),DATA[lista[ii]], color= Spectral11[ii],line_width=1,legend=lista[ii])
   p.legend.location = "top_left"
   script, div = components(p)
-  return render_template('graph.html', script=script, div=div) 
+  return render_template('graph.html', Ticker=app.Stock, script=script, div=div) 
 
 
 @app.route('/about')
