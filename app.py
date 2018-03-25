@@ -30,7 +30,7 @@ def graph():
   DATA=DataFrame(R['data'],columns=R['column_names']) 
   p = figure(title='Data from Quandle WIKI set', x_axis_label='Date', x_axis_type='datetime')
   p.line(pd.to_datetime(DATA['Date']),DATA['Open'], color= Spectral11[0],line_width=1)
-  script, div = components(plot)
+  script, div = components(p)
   return render_template('graph.html', script=script, div=div) 
 #  return render_template('graph.html',stock=DATA['Open'][0])
 
