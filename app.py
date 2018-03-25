@@ -29,11 +29,13 @@ def graph():
   raw_data = session.get(api_url)
   R=loads(raw_data.content)
   DATA=DataFrame(R['data'],columns=R['column_names']) 
-  p = figure(title='Data from Quandle WIKI set', x_axis_label='%s'%app.Type[0], x_axis_type='datetime')
-  p.line(to_datetime(DATA['Date']),DATA['Open'], color= Spectral11[0],line_width=1)
+  p = figure(title='Data from Quandle WIKI set', x_axis_label='Date', x_axis_type='datetime')
+  lista=app.Type
+  ll=len(lista)
+  for ii in range(ll):
+    p.line(to_datetime(DATA['Date']),DATA[ll[i]], color= Spectral11[i],line_width=1)
   script, div = components(p)
   return render_template('graph.html', script=script, div=div) 
-#  return render_template('graph.html',stock=DATA['Open'][0])
 
 
 @app.route('/about')
