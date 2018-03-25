@@ -6,6 +6,7 @@ from bokeh.embed import components
 from bokeh.models import ColumnDataSource, FactorRange, Title
 from bokeh.plotting import figure
 from bokeh.palettes import Spectral11
+import bokeh
 
 app = Flask(__name__)
 app.Stock = 'GOOG'
@@ -37,7 +38,8 @@ def graph():
 
 @app.route('/about')
 def about():
-  return render_template('about.html')
+  a=bokeh.__version__
+  return render_template('about.html',texto=a)
 
 if __name__ == '__main__':
   app.run(port=33507)
