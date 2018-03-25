@@ -33,7 +33,7 @@ def graph():
   lista=app.Type
   ll=len(lista)
   for ii in range(ll):
-    p.line(to_datetime(DATA['Date']),DATA['Open'], color= Spectral11[ii],line_width=1)
+    p.line(to_datetime(DATA['Date']),DATA[lista[ii]], color= Spectral11[ii],line_width=1)
   script, div = components(p)
   return render_template('graph.html', script=script, div=div) 
 
