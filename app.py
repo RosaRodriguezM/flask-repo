@@ -30,16 +30,15 @@ def graph():
   raw_data = session.get(api_url)
   R=loads(raw_data.content)
   DATA=DataFrame(R['data'],columns=R['column_names'])
-  p=figure(plot_width=400, plot_height=400)
-  p.line([1,2,3],[1,2,3],line_width=2) 
-#  p = figure(title='Data from Quandle WIKI set', x_axis_label='Date', x_axis_type='datetime')
-#  lista=app.Type
-#  ll=len(lista)
-#  for ii in range(ll):
-#    p.line(to_datetime(DATA['Date'][0:52*5]),DATA[lista[ii][0:52*5]], color= Spectral11[ii],line_width=1,legend=lista[ii])
-#  p.legend.location = "top_left"
+#  p=figure(plot_width=400, plot_height=400)
+#  p.line([1,2,3],[1,2,3],line_width=2) 
+  p = figure(title='Data from Quandle WIKI set', x_axis_label='Date', x_axis_type='datetime')
+  ll=len(lista)
+  for ii in range(ll):
+    p.line(to_datetime(DATA['Date'][0:52*5]),DATA[lista[ii][0:52*5]], color= Spectral11[ii],line_width=1,legend=lista[ii])
+  p.legend.location = "top_left"
   script, div = components(p)
-  return render_template('graph.html', Ticker=script, script=script, div=div) 
+  return render_template('graph.html', Ticker=Stock, script=script, div=div) 
 
 
 @app.route('/about')
