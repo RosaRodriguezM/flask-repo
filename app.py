@@ -10,19 +10,21 @@ import bokeh
 
 app = Flask(__name__)
 app.Stock = 'GOOG'
-app.Type = 'Open'
+app.Type = ['Open']
 
 @app.route('/',methods=['GET','POST'])
 def index():
   if request.method == 'GET':
     return render_template('index.html')
-  else:
-    app.Stock = request.form['Stock']
-    app.Type = request.form.getlist('selection')
-    return redirect('/graph')
+#  else:
+#    app.Stock = request.form['Stock']
+#    app.Type = request.form.getlist('selection')
+#    return redirect('/graph')
 
 @app.route('/graph')
 def graph():
+  app.Stock = request.form['Stock']
+  lista = request.form.getlist('selection')
   api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' %app.Stock
   session = requests.Session()
   session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
@@ -30,7 +32,7 @@ def graph():
   R=loads(raw_data.content)
   DATA=DataFrame(R['data'],columns=R['column_names']) 
   p = figure(title='Data from Quandle WIKI set', x_axis_label='Date', x_axis_type='datetime')
-  lista=app.Type
+#  lista=app.Type
   ll=len(lista)
   for ii in range(ll):
     p.line(to_datetime(DATA['Date'][0:52*5]),DATA[lista[ii][0:52*5]], color= Spectral11[ii],line_width=1,legend=lista[ii])
