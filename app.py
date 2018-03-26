@@ -6,7 +6,6 @@ from bokeh.embed import components
 from bokeh.models import ColumnDataSource, FactorRange, Title
 from bokeh.plotting import figure
 from bokeh.palettes import Spectral11
-import bokeh
 
 app = Flask(__name__)
 app.Stock = 'GOOG'
@@ -38,7 +37,7 @@ def graph():
     p.line(to_datetime(DATA['Date'][0:52*5]),DATA[lista[ii][0:52*5]], color= Spectral11[ii],line_width=1,legend=lista[ii])
   p.legend.location = "top_left"
   script, div = components(p)
-  return render_template('graph.html', Ticker=DATA[lista[0]][0], script=script, div=div) 
+  return render_template('graph.html', Ticker=Stock, script=script, div=div) 
 
 
 @app.route('/about')
