@@ -21,7 +21,7 @@ def index():
 #    app.Type = request.form.getlist('selection')
 #    return redirect('/graph')
 
-@app.route('/graph')
+@app.route('/graph',methods=['GET','POST'])
 def graph():
   app.Stock = request.form['Stock']
   lista = request.form.getlist('selection')
