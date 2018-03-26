@@ -38,7 +38,7 @@ def graph():
     p.line(to_datetime(DATA['Date'][0:52*5]),DATA[lista[ii][0:52*5]], color= Spectral11[ii],line_width=1,legend=lista[ii])
   p.legend.location = "top_left"
   script, div = components(p)
-  return render_template('graph.html', Ticker=api_url, script=script, div=div) 
+  return render_template('graph.html', Ticker=raw_data, script=script, div=div) 
 
 
 @app.route('/about')
