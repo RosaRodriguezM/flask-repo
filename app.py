@@ -21,11 +21,11 @@ def index():
 #    app.Type = request.form.getlist('selection')
 #    return redirect('/graph')
 
-@app.route('/graph',methods=['GET','POST'])
+@app.route('/graph',methods=['POST'])
 def graph():
-  app.Stock = request.form['Stock']
-  lista = request.form.getlist('selection')
-  api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' %app.Stock
+  Stock = request.form['Stock']
+  lista  = request.form.getlist('selection')
+  api_url = 'https://www.quandl.com/api/v1/datasets/WIKI/%s.json' %Stock
   session = requests.Session()
   session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
   raw_data = session.get(api_url)
@@ -38,7 +38,7 @@ def graph():
     p.line(to_datetime(DATA['Date'][0:52*5]),DATA[lista[ii][0:52*5]], color= Spectral11[ii],line_width=1,legend=lista[ii])
   p.legend.location = "top_left"
   script, div = components(p)
-  return render_template('graph.html', Ticker=bokeh.__version__, script=script, div=div) 
+  return render_template('graph.html', Ticker=Stock, script=script, div=div) 
 
 
 @app.route('/about')
