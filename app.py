@@ -32,10 +32,10 @@ def graph():
   DATA=DataFrame(R['data'],columns=R['column_names']) 
   p = figure(title='Data from Quandle WIKI set', x_axis_label='Date', x_axis_type='datetime')
 #  lista=app.Type
-  ll=len(lista)
-  for ii in range(ll):
-    p.line(to_datetime(DATA['Date'][0:52*5]),DATA[lista[ii][0:52*5]], color= Spectral11[ii],line_width=1,legend=lista[ii])
-  p.legend.location = "top_left"
+#  ll=len(lista)
+#  for ii in range(ll):
+#    p.line(to_datetime(DATA['Date'][0:52*5]),DATA[lista[ii][0:52*5]], color= Spectral11[ii],line_width=1,legend=lista[ii])
+#  p.legend.location = "top_left"
   script, div = components(p)
   return render_template('graph.html', Ticker=Stock, script=script, div=div) 
 
