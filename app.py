@@ -30,8 +30,8 @@ def graph():
   raw_data = session.get(api_url)
   R=loads(raw_data.content)
   DATA=DataFrame(R['data'],columns=R['column_names'])
-  p=figure()
-  p.line([1,2,3],[1,2,3]) 
+  p=figure(iplot_width=400, plot_height=400)
+  p.line([1,2,3],[1,2,3],line_width=2) 
 #  p = figure(title='Data from Quandle WIKI set', x_axis_label='Date', x_axis_type='datetime')
 #  lista=app.Type
 #  ll=len(lista)
